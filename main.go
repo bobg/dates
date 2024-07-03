@@ -38,6 +38,9 @@ func (maincmd) Subcmds() subcmd.Map {
 		"since", doSince, "compute the number of days since a date", subcmd.Params(
 			"date", subcmd.Value, dflt, "the date",
 		),
+		"until", doUntil, "compute the number of days until a date", subcmd.Params(
+			"date", subcmd.Value, dflt, "the date",
+		),
 	)
 }
 
@@ -72,6 +75,16 @@ func doSince(_ context.Context, dv flag.Value, _ []string) error {
 		return fmt.Errorf("unexpected type %T for date", dv)
 	}
 	delta := int64(date.Today()) - int64(d.Date)
+	fmt.Println(delta)
+	return nil
+}
+
+func doUntil(_ context.Context, dv flag.Value, _ []string) error {
+	d, ok := dv.(*dateArgType)
+	if !ok {
+		return fmt.Errorf("unexpected type %T for date", dv)
+	}
+	delta := int64(d.Date) - int64(date.Today())
 	fmt.Println(delta)
 	return nil
 }

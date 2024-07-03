@@ -12,7 +12,7 @@ go install github.com/bobg/dates@latest
 ## Usage
 
 In all of the following cases,
-a date argument can be the string “today”
+a date argument can be the string `today`
 to mean today’s date.
 
 ```sh
@@ -36,3 +36,10 @@ dates since DATE
 
 Show the number of days since DATE.
 This is the same as `dates delta DATE today`.
+
+```sh
+dates until DATE
+```
+
+Show the number of days until DATE.
+This is the same as `dates delta today DATE`.
